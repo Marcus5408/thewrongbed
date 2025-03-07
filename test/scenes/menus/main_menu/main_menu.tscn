@@ -1,0 +1,11 @@
+[gd_scene load_steps=5 format=3 uid="uid://dfo70qleo8fxp"]
+
+[ext_resource type="PackedScene" path="res://addons/maaacks_menus_template/base/scenes/menus/main_menu/main_menu.tscn" id="1_eiwyr"]
+[ext_resource type="Script" path="res://test/scenes/menus/main_menu/main_menu.gd" id="2_rtd0k"]
+[ext_resource type="PackedScene" path="res://test/scenes/menus/options_menu/master_options_menu_with_tabs.tscn" id="3_4mbq4"]
+[ext_resource type="PackedScene" path="res://test/scenes/credits/credits.tscn" id="4_r08r2"]
+
+[node name="MainMenu" instance=ExtResource("1_eiwyr")]
+script = ExtResource("2_rtd0k")
+options_packed_scene = ExtResource("3_4mbq4")
+credits_packed_scene = ExtResource("4_r08r2")
