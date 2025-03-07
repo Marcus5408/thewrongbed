@@ -22,6 +22,10 @@ SceneLoader="*res://addons/maaacks_menus_template/base/scenes/autoloads/scene_lo
 ProjectMusicController="*res://addons/maaacks_menus_template/base/scenes/autoloads/project_music_controller.tscn"
 ProjectUISoundController="*res://addons/maaacks_menus_template/base/scenes/autoloads/project_ui_sound_controller.tscn"
 
+[editor]
+
+movie_writer/movie_file="/Users/Camuise/Movies/Godot/wrongBed.avi"
+
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/godot_super-wakatime/plugin.cfg", "res://addons/maaacks_menus_template/plugin.cfg")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cs4drhmc1bql5"]
+[gd_scene load_steps=15 format=3 uid="uid://bc2yfb3x8k16c"]
 
 [ext_resource type="PackedScene" uid="uid://cc1m2a1obsyn4" path="res://addons/fpc/character.tscn" id="1_e18vq"]
 [ext_resource type="Texture2D" uid="uid://pe7a4weirj2g" path="res://textures/dark.png" id="2_08fdt"]
