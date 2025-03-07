@@ -1,7 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://btrsf4ud1pn2v"]
+[gd_scene load_steps=10 format=3 uid="uid://btrsf4ud1pn2v"]
 
-[ext_resource type="Script" uid="uid://di8hdss1f6hvf" path="res://interactable.gd" id="1_0xm2m"]
+[ext_resource type="Script" uid="uid://bg6uup7xgrvf0" path="res://main.gd" id="1_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://cc1m2a1obsyn4" path="res://addons/fpc/character.tscn" id="1_ig7tw"]
+[ext_resource type="Texture2D" uid="uid://dnbtf0gg20nla" path="res://play.tres" id="2_1bvp3"]
+[ext_resource type="PackedScene" uid="uid://oxc0l6e1bqnt" path="res://test/scenes/menus/main_menu/main_menu_with_animations.tscn" id="2_h2yge"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ig7tw"]
 sky_top_color = Color(0.0994909, 0.105852, 0.36486, 1)
@@ -17,7 +19,15 @@ sky = SubResource("Sky_0xm2m")
 tonemap_mode = 2
 glow_enabled = true
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lquwl"]
+resource_local_to_scene = true
+transparency = 1
+albedo_texture = ExtResource("2_1bvp3")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_0xm2m"]
+
 [node name="Main" type="Node3D"]
+script = ExtResource("1_1bvp3")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_h2yge")
@@ -28,6 +38,21 @@ transform = Transform3D(1, 0, 0, 0, 0.766044, 0.642788, 0, -0.642788, 0.766044, 
 [node name="Floor" type="CSGBox3D" parent="."]
 use_collision = true
 size = Vector3(20, 0.1, 20)
+
+[node name="ViewportQuad" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.914085, -0.307818, 0, 0, 0, -0.52403, 0.332699, 0.845723, 0, 1, 1.4, -1.45)
+material_override = SubResource("StandardMaterial3D_lquwl")
+mesh = SubResource("PlaneMesh_0xm2m")
+skeleton = NodePath("../Floor")
+
+[node name="PlaySubViewport" type="SubViewport" parent="."]
+disable_3d = true
+transparent_bg = true
+size = Vector2i(1280, 720)
+render_target_clear_mode = 2
+render_target_update_mode = 4
+
+[node name="MainMenu" parent="PlaySubViewport" instance=ExtResource("2_h2yge")]
 
 [node name="Room" type="CSGCombiner3D" parent="."]
 use_collision = true
@@ -62,25 +87,6 @@ transform = Transform3D(1, 0, 0, 0, 0.666667, 0, 0, 0, 1, -0.0711262, -0.333333,
 operation = 2
 size = Vector3(0.3, 2, 1)
 
-[node name="Interactable" type="CSGBox3D" parent="Room"]
-transform = Transform3D(0.939693, 0, -0.34202, 0, 1, 0, 0.34202, 0, 0.939693, 1.11809, 1.4, -1.40211)
-size = Vector3(0.4, 0.4, 0.001)
-script = ExtResource("1_0xm2m")
-
-[node name="SubViewport" type="SubViewport" parent="Room/Interactable"]
-
-[node name="Control" type="Control" parent="Room/Interactable/SubViewport"]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="RichTextLabel" type="RichTextLabel" parent="Room/Interactable/SubViewport/Control"]
-layout_mode = 0
-offset_right = 49.0
-offset_bottom = 25.0
-text = "hello"
-
 [node name="Bed" type="CSGBox3D" parent="Room"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9, 0.4, -1.4)
 use_collision = true
@@ -109,4 +115,14 @@ size = Vector3(1.3, 2, 0.6)
 [node name="Character" parent="." instance=ExtResource("1_ig7tw")]
 transform = Transform3D(0.8, 0, -8.52652e-15, 0, 0.8, 0, 8.52652e-15, 0, 0.8, 0.155457, 0.0999998, 0.171126)
 
-[node name="RayCast3D" type="RayCast3D" parent="Character"]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+follow_viewport_enabled = true
+
+[node name="PlaySubViewport" type="SubViewport" parent="CanvasLayer"]
+disable_3d = true
+transparent_bg = true
+size = Vector2i(1280, 720)
+render_target_clear_mode = 2
+render_target_update_mode = 4
+
+[node name="MainMenu" parent="CanvasLayer/PlaySubViewport" instance=ExtResource("2_h2yge")]
