@@ -67,13 +67,15 @@ transform = Transform3D(0.939693, 0, -0.34202, 0, 1, 0, 0.34202, 0, 0.939693, 1.
 size = Vector3(0.4, 0.4, 0.001)
 script = ExtResource("1_0xm2m")
 
-[node name="Control" type="Control" parent="Room/Interactable"]
+[node name="SubViewport" type="SubViewport" parent="Room/Interactable"]
+
+[node name="Control" type="Control" parent="Room/Interactable/SubViewport"]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Room/Interactable/Control"]
+[node name="RichTextLabel" type="RichTextLabel" parent="Room/Interactable/SubViewport/Control"]
 layout_mode = 0
 offset_right = 49.0
 offset_bottom = 25.0
