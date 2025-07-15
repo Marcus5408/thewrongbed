@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="The Wrong Side of the Bed"
+config/name="pain"
 run/main_scene="uid://btrsf4ud1pn2v"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
